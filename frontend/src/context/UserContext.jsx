@@ -1,6 +1,6 @@
 import React from 'react'
 import { UserDataContext } from './UserDataContext'
-import { useState } from 'react';
+import { useState , useCallback } from 'react';
 import { useContext } from 'react';
 import { AuthDataContext } from './AuthdataContext';
 import axios from 'axios';
@@ -10,21 +10,37 @@ const UserContext = ({ children }) => {
     const [userdata, setUserdata] = useState();
     let { serverUrl } = useContext(AuthDataContext); 
 
-    const getCurrentUser = async () => {
+    // const getCurrentUser = async () => {
+    //     try {
+    //         let result = await axios.get(serverUrl + "/api/user/getcurrentuser", { withCredentials: true });
+    //         setUserdata(result.data);
+    //         console.log(result.data);
+
+    //     } catch (error) {
+    //         setUserdata(null);
+    //         console.log(error);
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     getCurrentUser();
+    // });
+
+    const getCurrentUser = useCallback(async () => {
         try {
             let result = await axios.get(serverUrl + "/api/user/getcurrentuser", { withCredentials: true });
             setUserdata(result.data);
             console.log(result.data);
-
         } catch (error) {
             setUserdata(null);
             console.log(error);
         }
-    }
+    }, [serverUrl]);
 
     useEffect(() => {
         getCurrentUser();
-    });
+    }, [getCurrentUser]);
+    
 
     let value = {
         userdata,
