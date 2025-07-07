@@ -3,8 +3,10 @@ import shopkart from "../assets/shopkart.png"
 import { IoSearchCircleOutline } from "react-icons/io5";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineCollectionsBookmark } from "react-icons/md";
+import { LuContact } from "react-icons/lu";
 import { IoSearchCircleSharp } from "react-icons/io5";
-
+import { MdOutlineHome } from "react-icons/md";
 import { UserDataContext } from '../context/UserDataContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -34,13 +36,13 @@ function Navbar() {
                 <div className='w-[100vw] h-[70px] bg-[#ecfafaec] z-10  top-0 flex items-center
                 justify-between px-[30px] shadow-md shadow-grey relative'>
                         {/* LOGO PORTION */}
-                        <div className='w-[30%] flex items-center justify-start gap-[10px] cursor-pointer'>
+                        <div className='w-[20%] lg:w[30%] flex items-center justify-start gap-[10px] cursor-pointer'>
                                 <img src={shopkart} alt="" className='w-[30px] ' />
-                                <h1 className='text-[25px] text-[black] font-sans '>Shopkart</h1>
+                                {/* <h1 className='text-[25px] text-[black] font-sans '>Shopkart</h1> */}
                         </div>
                         
                         {/* LIST PORTION  */}
-                        <div className='w-[40%] '>
+                                <div className='w-[50%] lg:w[40%] hidden md:flex '>
                                 <ul className='flex items-center justify-center gap-[19px] text-white '>
                                         <li className='text-[15px] hover:bg-slate-500 cursor-pointer 
                                 bg-[#000000c9] py-[10px] px-[20px] rounded-2xl '>HOME</li>
@@ -73,9 +75,9 @@ function Navbar() {
                                                 {userdata?.name.toUpperCase().slice(0, 1)}
                                         </div>
                                 }
-                                <MdOutlineShoppingCart className='w-[30px] h-[30px] text-[#000000] cursor-pointer ' />
+                                <MdOutlineShoppingCart className='w-[30px] h-[30px] text-[#000000] cursor-pointer hidden md:block ' />
                                 <p className='absolute w-[18px] h-[18px] items-center justify-center bg-black px-[5px] py-[2px] 
-                                text-white rounded-full text-[9px] top-[10px] right-[23px] '>10</p>
+                                text-white rounded-full text-[9px] top-[10px] right-[23px] hidden md:block'>10</p>
                         </div>
                         
                 </div>
@@ -110,7 +112,20 @@ function Navbar() {
                                 <li className='w-[100%] hover:bg-[#2f2f2f] px-[15px] py-[10px] cursor-pointer '>Orders</li>
                                 <li className='w-[100%] hover:bg-[#2f2f2f] hover:rounded-b-lg  px-[15px] py-[10px] cursor-pointer '>About</li>
                         </ul>
-                </div>}
+                        </div>}
+
+                {/* Bottom for small devices */}
+                        <div className='w-[100vw] h-[90px] flex items-center justify-between px-[20px] fixed bottom-0 left-0 bg-[#191818] md:hidden '>
+                                <button className='text-[white] flex items-center justify-center flex-col gap-[2px] '>
+                                        <MdOutlineHome className='w-[32px] h-[32px] text-white md:hidden ' />Home</button>
+                                <button className='text-[white] flex items-center justify-center flex-col gap-[2px] '>
+                                        <MdOutlineCollectionsBookmark className='w-[30px] h-[30px] text-white md:hidden ' />Collections</button>
+                                <button className='text-[white] flex items-center justify-center flex-col gap-[2px] '>
+                                        <LuContact className='w-[30px] h-[30px] text-white md:hidden ' />Contact</button>
+                                <button className='text-[white] flex items-center justify-center flex-col gap-[2px] '>
+                                        <MdOutlineShoppingCart className='w-[30px] h-[30px] text-white md:hidden ' />Cart</button>
+
+                        </div>
         </div>
         )
 }
