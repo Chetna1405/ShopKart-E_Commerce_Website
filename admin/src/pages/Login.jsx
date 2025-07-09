@@ -8,7 +8,7 @@ import axios from "axios";
 import { AdminDataContext } from '../context/AdminDataContext';
 const Login = () => {
   let [show, setShow] = useState(false);
-  let {adminData , getAdmin } = useContext(AdminDataContext);
+  let {getAdmin } = useContext(AdminDataContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,7 +29,7 @@ const Login = () => {
 
 
   let navigate = useNavigate()
-  if (adminData === null) {
+  
     return (
       <div className='w-[100vw] h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-[white] 
                         flex flex-col items-center justify-start'>
@@ -84,10 +84,6 @@ const Login = () => {
         </div>
       </div>
       )
-  } else {
-    navigate("/")
-  }
-
 }
 
 export default Login
