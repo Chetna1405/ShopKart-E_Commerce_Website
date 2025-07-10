@@ -44,3 +44,24 @@ export const addProduct = async (req, res) => {
         res.status(500).json({ message: "Add product error" });
     }
 }
+
+export const listProduct = async (req, res) => {
+    try {
+        const product = await Product.find({});
+        res.status(200).json(product);
+    } catch (error) {
+        console.log("Product listing error ", error);
+        res.status(500).json({ message: "Product List Error" });
+    }
+}
+
+export const removeProduct = async (req, res) => {
+    try {
+        let { id } = req.params;
+        const product = await Product.findByIdAndDelete(id);
+        res.status(200).json(product);
+    } catch (error) {
+        console.log("Product Remove error ", error);
+        res.status(500).json({ message: "Product Remove Error" });
+    }
+}

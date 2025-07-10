@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const adminAuth = async (req, res ,next) => {
     try {
+        // console.log(req.cookies.token);
         let { token } = req.cookies;
         if (!token) {
             return res.status(401).json({ message: "Admin does not have token !" });

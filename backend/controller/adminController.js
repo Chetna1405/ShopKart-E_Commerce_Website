@@ -6,7 +6,8 @@ export const getAdmin = async (req, res) => {
         }
         return res.status(201).json({
             email: adminEmail, 
-            role:"admin"
+            role: "admin",
+            token: req.cookies 
         })
     } catch (error) {
         console.log(error);
