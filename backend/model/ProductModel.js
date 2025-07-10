@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    subCategory: {
+    subcategory: {
         type: String,
         required: true
     },
@@ -44,8 +44,11 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    bestseller: {
-        type : Boolean
+    bestSeller: {
+        type: Boolean
     }
 
-})
+}, { timestamps: true });
+
+const Product = mongoose.model("Product", productSchema);
+export default Product;
